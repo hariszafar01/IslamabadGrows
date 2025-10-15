@@ -101,3 +101,38 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
   });
 })();
+
+/* ============================================
+       INTERSECTION OBSERVER FOR ANIMATIONS
+       ============================================ */
+(function () {
+  // Check if browser supports IntersectionObserver
+  if (!('IntersectionObserver' in window)) {
+    return; // Graceful degradation for older browsers
+  }
+
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px',
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+        // Unobserve after animation to improve performance
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements when DOM is ready
+  const animatedElements = document.querySelectorAll(
+    '.plant-card, .care-item, .season-card'
+  );
+
+  animatedElements.forEach(function (element) {
+    element.style.animationPlayState = 'paused';
+    observer.observe(element);
+  });
+})();
