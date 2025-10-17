@@ -1552,6 +1552,275 @@ button:focus-visible {
   }
 }
 
+.season-card:hover .plant-tag:nth-child(3) {
+  transition-delay: 0.1s;
+}
+
+/* ============================================
+       CARE GUIDE SECTION
+       ============================================ */
+.care-guide {
+  padding-block: var(--spacing-2xl);
+  background: linear-gradient(
+    to top,
+    var(--color-background) 0%,
+    var(--color-white) 100%
+  );
+}
+
+.care-guide h2 {
+  font-size: var(--font-size-2xl);
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary-dark);
+}
+
+.care-guide__intro {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: var(--font-size-lg);
+  max-width: 700px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-xl);
+}
+
+.care-guide__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+/* Care Item Card */
+.care-item {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+  border: 1px solid var(--color-gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gradient overlay on hover */
+.care-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-primary-light) 50%,
+    var(--color-success) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+
+.care-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.care-item:hover::before {
+  transform: scaleX(1);
+}
+
+/* Care Item Header */
+.care-item__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+/* Icon Container with Geometric Shape */
+.care-item__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-light) 100%
+  );
+  border-radius: var(--border-radius);
+  transition: all var(--transition-smooth);
+  z-index: 1;
+}
+
+/* Geometric layers behind icon */
+.care-item__icon::before,
+.care-item__icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+  transition: all var(--transition-smooth);
+}
+
+.care-item__icon::before {
+  transform: rotate(30deg);
+  opacity: 0.6;
+}
+
+.care-item__icon::after {
+  transform: rotate(60deg);
+  opacity: 0.3;
+}
+
+/* Icon hover effect */
+.care-item:hover .care-item__icon {
+  transform: scale(1.08) rotate(-5deg);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.25);
+}
+
+.care-item:hover .care-item__icon::before {
+  transform: rotate(45deg) scale(1.1);
+  opacity: 0.5;
+}
+
+.care-item:hover .care-item__icon::after {
+  transform: rotate(75deg) scale(1.15);
+  opacity: 0.25;
+}
+
+/* Emoji inside icon */
+.care-item__emoji {
+  font-size: 1.75rem;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  transition: transform var(--transition-base);
+}
+
+.care-item:hover .care-item__emoji {
+  transform: scale(1.1);
+}
+
+/* Care Item Title */
+.care-item__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Care List Styling */
+.care-item__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.care-item__list li {
+  position: relative;
+  padding-left: 2rem;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  transition: all var(--transition-base);
+}
+
+/* Custom checkmark bullet */
+.care-item__list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0.125rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  background: var(--color-success);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all var(--transition-base);
+}
+
+/* List item hover effect */
+.care-item__list li:hover {
+  color: var(--color-primary-dark);
+  transform: translateX(4px);
+}
+
+.care-item__list li:hover::before {
+  background: var(--color-primary);
+  transform: scale(1.15) rotate(360deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .care-guide__grid {
+    gap: var(--spacing-md);
+  }
+
+  .care-item {
+    padding: var(--spacing-md);
+  }
+
+  .care-item__header {
+    gap: var(--spacing-sm);
+  }
+
+  .care-item__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .care-item__emoji {
+    font-size: 1.5rem;
+  }
+
+  .care-item__title {
+    font-size: var(--font-size-base);
+  }
+
+  .care-item__list li {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Animation for care items when they enter viewport */
+@media (prefers-reduced-motion: no-preference) {
+  .care-item {
+    animation: fade-in-scale 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-play-state: paused;
+  }
+
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+}
+
 /* ============================================
        RESPONSIVE DESIGN - PLANT SHOWCASE
        ============================================ */
