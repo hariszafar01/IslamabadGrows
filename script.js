@@ -266,3 +266,53 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+/* ============================================
+       ACCORDION FUNCTIONALITY
+       ============================================ */
+(function () {
+  const accordionHeaders = document.querySelectorAll('.accordion__header');
+
+  accordionHeaders.forEach(function (header) {
+    header.addEventListener('click', function () {
+      const accordionItem = this.closest('.accordion__item');
+      const isOpen = accordionItem.classList.contains('accordion__item--open');
+
+      // Close all accordion items
+      document.querySelectorAll('.accordion__item').forEach(function (item) {
+        item.classList.remove('accordion__item--open');
+        const btn = item.querySelector('.accordion__header');
+        if (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // If the clicked item wasn't open, open it
+      if (!isOpen) {
+        accordionItem.classList.add('accordion__item--open');
+        this.setAttribute('aria-expanded', 'true');
+
+        // Smooth scroll into view if needed
+        setTimeout(function () {
+          if (
+            accordionItem.getBoundingClientRect().top < 0 ||
+            accordionItem.getBoundingClientRect().bottom > window.innerHeight
+          ) {
+            accordionItem.scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest',
+            });
+          }
+        }, 300);
+      }
+    });
+
+    // Add keyboard support
+    header.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+})();

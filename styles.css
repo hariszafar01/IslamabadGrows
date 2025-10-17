@@ -1822,6 +1822,477 @@ button:focus-visible {
 }
 
 /* ============================================
+       PROBLEMS SECTION
+       ============================================ */
+.problems {
+  padding-block: var(--spacing-2xl);
+  background: linear-gradient(
+    to bottom,
+    var(--color-gray-50) 0%,
+    var(--color-background) 50%,
+    var(--color-white) 100%
+  );
+}
+
+.problems h2 {
+  font-size: var(--font-size-2xl);
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary-dark);
+}
+
+.problems__subtitle {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: var(--font-size-lg);
+  max-width: 700px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* ============================================
+       PROBLEMS STATS
+       ============================================ */
+.problems-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-xl);
+}
+
+.problems-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  border: 2px solid transparent;
+}
+
+.problems-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-light);
+}
+
+.problems-stat__icon {
+  font-size: 2.5rem;
+  display: block;
+  transition: transform var(--transition-base);
+}
+
+.problems-stat:hover .problems-stat__icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.problems-stat__value {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.problems-stat__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  text-align: center;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+       ACCORDION CONTAINER
+       ============================================ */
+.accordion {
+  max-width: 800px;
+  margin-inline: auto;
+  margin-block-start: var(--spacing-xl);
+}
+
+/* ============================================
+       ACCORDION ITEM
+       ============================================ */
+.accordion__item {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  margin-block-end: var(--spacing-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.accordion__item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-gray-200);
+}
+
+.accordion__item--open {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+       ACCORDION HEADER (Button)
+       ============================================ */
+.accordion__header {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: var(--color-white);
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.accordion__header:hover {
+  background: var(--color-gray-50);
+}
+
+.accordion__item--open .accordion__header {
+  background: linear-gradient(
+    135deg,
+    rgba(45, 80, 22, 0.05) 0%,
+    rgba(74, 124, 40, 0.08) 100%
+  );
+  color: var(--color-primary-dark);
+}
+
+/* Header icon (emoji on left) */
+.accordion__header-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--color-gray-100);
+  border-radius: var(--border-radius);
+}
+
+.accordion__item--open .accordion__header-icon {
+  background: var(--color-primary-light);
+  transform: scale(1.1);
+}
+
+.accordion__header:hover .accordion__header-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Header text */
+.accordion__header-text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* Toggle indicator (plus/minus) */
+.accordion__header-toggle {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-100);
+  border-radius: 50%;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+/* Plus icon using pseudo-elements */
+.accordion__header-toggle::before,
+.accordion__header-toggle::after {
+  content: '';
+  position: absolute;
+  background: var(--color-primary);
+  transition: all var(--transition-base);
+}
+
+.accordion__header-toggle::before {
+  width: 12px;
+  height: 2px;
+}
+
+.accordion__header-toggle::after {
+  width: 2px;
+  height: 12px;
+}
+
+/* Rotate to X when open */
+.accordion__item--open .accordion__header-toggle {
+  background: var(--color-primary);
+  transform: rotate(45deg);
+}
+
+.accordion__item--open .accordion__header-toggle::before,
+.accordion__item--open .accordion__header-toggle::after {
+  background: var(--color-white);
+}
+
+/* ============================================
+       ACCORDION CONTENT
+       ============================================ */
+.accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-smooth);
+}
+
+.accordion__item--open .accordion__content {
+  max-height: 600px;
+}
+
+/* ============================================
+       ACCORDION BODY
+       ============================================ */
+.accordion__body {
+  padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+}
+
+.accordion__body p {
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* List styling */
+.accordion__body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.accordion__body li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition-base);
+}
+
+.accordion__body li:hover {
+  background: var(--color-gray-50);
+}
+
+.accordion__list-icon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.accordion__body strong {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+/* ============================================
+       ACCORDION TIP BOX
+       ============================================ */
+.accordion__tip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: linear-gradient(
+    135deg,
+    rgba(247, 147, 30, 0.1) 0%,
+    rgba(255, 107, 53, 0.08) 100%
+  );
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--border-radius-sm);
+}
+
+.accordion__tip-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gentle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.accordion__tip p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.accordion__tip strong {
+  color: var(--color-warning);
+}
+
+/* ============================================
+       PROBLEMS HELP CTA
+       ============================================ */
+.problems-help {
+  max-width: 600px;
+  margin-inline: auto;
+  margin-top: var(--spacing-2xl);
+}
+
+.problems-help__content {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary) 50%,
+    var(--color-primary-light) 100%
+  );
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative overlay */
+.problems-help__content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 50%,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.problems-help__content > * {
+  position: relative;
+  z-index: 1;
+}
+
+.problems-help__content h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-white);
+}
+
+.problems-help__content p {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.95;
+}
+
+.problems-help__content .btn {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-white);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.problems-help__content .btn:hover {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+       RESPONSIVE DESIGN - PROBLEMS
+       ============================================ */
+@media (max-width: 768px) {
+  .problems {
+    padding-block: var(--spacing-xl);
+  }
+
+  .problems-stats {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .accordion__item {
+    margin-block-end: var(--spacing-sm);
+  }
+
+  .accordion__header {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .accordion__header-icon {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.25rem;
+  }
+
+  .accordion__header-toggle {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .accordion__body {
+    padding: 0 var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
+  }
+
+  .accordion__body p,
+  .accordion__body li {
+    font-size: var(--font-size-sm);
+  }
+
+  .problems-help__content {
+    padding: var(--spacing-lg);
+  }
+
+  .problems-help__content h3 {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .problems-stats {
+    max-width: 700px;
+  }
+
+  .accordion {
+    max-width: 700px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1500px) {
+  .accordion__header {
+    padding: var(--spacing-lg);
+  }
+
+  .accordion__body {
+    padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  }
+}
+
+/* ============================================
        RESPONSIVE DESIGN - PLANT SHOWCASE
        ============================================ */
 @media (max-width: 768px) {
