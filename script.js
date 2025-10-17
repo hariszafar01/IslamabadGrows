@@ -136,3 +136,133 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     observer.observe(element);
   });
 })();
+
+/* ============================================
+       PLANT FILTER FUNCTIONALITY
+       ============================================ */
+(function () {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const plantCards = document.querySelectorAll('.plant-card');
+
+  // Store active filters for each group
+  let activeFilters = {
+    type: 'all',
+    difficulty: 'all',
+  };
+
+  // Function to filter plants based on active criteria
+  function filterPlants() {
+    let visibleCount = 0;
+
+    plantCards.forEach(function (card) {
+      const cardType = card.getAttribute('data-type');
+      const cardDifficulty = card.getAttribute('data-difficulty');
+
+      // Check if card matches active filters
+      const typeMatch =
+        activeFilters.type === 'all' || cardType === activeFilters.type;
+      const difficultyMatch =
+        activeFilters.difficulty === 'all' ||
+        cardDifficulty === activeFilters.difficulty;
+
+      // Show card if both filters match
+      if (typeMatch && difficultyMatch) {
+        card.style.display = '';
+        // Add staggered fade-in animation
+        card.style.animation = 'none';
+        // Force reflow to restart animation
+        void card.offsetWidth;
+        card.style.animation = `fadeInUp 0.5s ease forwards ${
+          visibleCount * 0.1
+        }s`;
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Show "no results" message if needed
+    showNoResultsMessage(visibleCount === 0);
+  }
+
+  // Function to show/hide no results message
+  function showNoResultsMessage(show) {
+    let noResultsMsg = document.querySelector('.no-results-message');
+
+    if (show && !noResultsMsg) {
+      // Create message if it doesn't exist
+      noResultsMsg = document.createElement('div');
+      noResultsMsg.className = 'no-results-message';
+      noResultsMsg.innerHTML = `
+        <div class="no-results-content">
+          <span class="no-results-icon">🌱</span>
+          <h3>No plants found</h3>
+          <p>Try adjusting your filters to see more results</p>
+        </div>
+      `;
+
+      const plantGrid = document.querySelector('.plant-grid');
+      plantGrid.parentElement.insertBefore(noResultsMsg, plantGrid.nextSibling);
+    } else if (!show && noResultsMsg) {
+      noResultsMsg.remove();
+    }
+  }
+
+  // Add click handlers to filter buttons
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const filterValue = this.getAttribute('data-filter');
+      const filterGroup = this.closest('.filter-bar__group');
+      const groupButtons = filterGroup.querySelectorAll('.filter-btn');
+
+      // Determine which filter group this button belongs to
+      const isTypeFilter = filterGroup
+        .querySelector('.filter-bar__label')
+        .textContent.includes('Type');
+
+      // Remove active class from all buttons in this group
+      groupButtons.forEach(function (sibling) {
+        sibling.classList.remove('filter-btn--active');
+      });
+
+      // Add active class to clicked button
+      this.classList.add('filter-btn--active');
+
+      // Update active filters
+      if (isTypeFilter) {
+        activeFilters.type = filterValue;
+      } else {
+        activeFilters.difficulty = filterValue;
+      }
+
+      // Apply filters
+      filterPlants();
+    });
+  });
+
+  // Initialize "All" filters as active
+  const typeAllBtn = document.querySelector(
+    '.filter-bar__group:first-child .filter-btn[data-filter="all"]'
+  );
+  if (typeAllBtn) {
+    typeAllBtn.classList.add('filter-btn--active');
+  }
+})();
+
+/* ============================================
+       FADE-IN ANIMATION FOR FILTERED CARDS
+       ============================================ */
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+document.head.appendChild(style);

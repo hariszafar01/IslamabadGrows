@@ -785,6 +785,449 @@ button:focus-visible {
 }
 
 /* ============================================
+       PLANT SHOWCASE SECTION
+       ============================================ */
+.plant-showcase {
+  padding-block: var(--spacing-2xl);
+  background: linear-gradient(
+    to top,
+    var(--color-background) 0%,
+    var(--color-white) 100%
+  );
+}
+
+/* Section heading */
+.plant-showcase h2 {
+  font-size: var(--font-size-2xl);
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary-dark);
+}
+
+.plant-showcase__subtitle {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: var(--font-size-lg);
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* ============================================
+       FILTER BAR
+       ============================================ */
+.filter-bar {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-block: var(--spacing-lg);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-md);
+  /* background: rgba(255, 255, 255, 0.6); */
+  border-block: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  /* border-radius: var(--border-radius-lg); */
+  /* box-shadow: var(--shadow-sm); */
+}
+
+.filter-bar__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.filter-bar__label {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin-right: var(--spacing-xs);
+  letter-spacing: 0.02em;
+}
+
+/* Filter button styles */
+.filter-btn {
+  padding: clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.875rem, 2vw, 1.125rem);
+  background: var(--color-white);
+  border: 2px solid var(--color-gray-300);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle hover effect with gradient overlay */
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-light) 0%,
+    var(--color-primary) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 0;
+}
+
+.filter-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.filter-btn:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-btn:hover::before {
+  opacity: 0.1;
+}
+
+/* Active filter state */
+.filter-btn--active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(45, 80, 22, 0.3);
+}
+
+.filter-btn--active::before {
+  opacity: 0;
+}
+
+.filter-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+       PLANT GRID LAYOUT
+       ============================================ */
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--spacing-lg);
+  margin-block-start: var(--spacing-xl);
+}
+
+/* ============================================
+       PLANT CARD COMPONENT
+       ============================================ */
+.plant-card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+  position: relative;
+  border: 1px solid var(--color-gray-200);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subtle gradient overlay on hover */
+.plant-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(45, 80, 22, 0.03) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.plant-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-light);
+}
+
+.plant-card:hover::before {
+  opacity: 1;
+}
+
+/* Image container with overlay effect */
+.plant-card__image {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: var(--color-gray-100);
+}
+
+/* Dark gradient overlay on image for text readability */
+.plant-card__image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.plant-card:hover .plant-card__image::after {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.plant-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.plant-card:hover .plant-card__image img {
+  transform: scale(1.08);
+}
+
+/* Text overlay positioned at bottom left */
+.plant-card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  z-index: 2;
+  text-align: left;
+}
+
+.plant-card__title {
+  font-size: var(--font-size-xl);
+  margin-bottom: 0.25rem;
+  color: var(--color-gray-100);
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-base);
+  line-height: 1.2;
+}
+
+.plant-card:hover .plant-card__title {
+  transform: translateX(4px);
+}
+
+.plant-card__latin {
+  font-style: italic;
+  color: var(--color-gray-200);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  font-weight: 400;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  transition: transform var(--transition-base);
+}
+
+.plant-card:hover .plant-card__latin {
+  transform: translateX(4px);
+}
+
+/* Badge variations with different colors */
+.plant-card__badge {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  padding: 0.275rem 0.675rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 2rem;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.02em;
+  transition: transform var(--transition-base);
+}
+
+.plant-card:hover .plant-card__badge {
+  transform: scale(1.05);
+}
+
+/* Card content area */
+.plant-card__content {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
+}
+
+/* Metadata section with icons */
+.plant-card__meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-md);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.plant-card__meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.plant-card__meta-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  display: block;
+  transition: transform var(--transition-base);
+}
+
+.plant-card__meta-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.plant-card__meta-value {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+}
+
+.plant-card__description {
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* ============================================
+       RESPONSIVE DESIGN - PLANT SHOWCASE
+       ============================================ */
+@media (max-width: 768px) {
+  .plant-showcase {
+    padding-block: var(--spacing-xl);
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+
+  .filter-bar__group {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    flex: 1;
+    min-width: fit-content;
+  }
+
+  .plant-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .plant-card__image {
+    height: 220px;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .plant-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  .plant-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+       NO RESULTS MESSAGE
+       ============================================ */
+.no-results-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.no-results-content {
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.no-results-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.6;
+  animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+@keyframes gentle-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.no-results-message h3 {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+.no-results-message p {
+  color: var(--color-text-light);
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+/* ============================================
        RESPONSIVE DESIGN - MOBILE & TABLET
        ============================================ */
 @media (max-width: 768px) {

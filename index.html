@@ -166,6 +166,294 @@
       </div>
     </section>
 
+    <!-- Plant Showcase -->
+    <section class="plant-showcase" id="plants">
+      <div class="container">
+        <h2>Popular Plants for Islamabad</h2>
+        <p class="plant-showcase__subtitle">
+          Discover plants that thrive in our unique climate conditions
+        </p>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-bar__group">
+            <span class="filter-bar__label">Type:</span>
+            <button class="filter-btn filter-btn--active" data-filter="all">
+              All
+            </button>
+            <button class="filter-btn" data-filter="vegetables">
+              Vegetables
+            </button>
+            <button class="filter-btn" data-filter="flowers">Flowers</button>
+            <button class="filter-btn" data-filter="herbs">Herbs</button>
+          </div>
+          <div class="filter-bar__group">
+            <span class="filter-bar__label">Difficulty:</span>
+            <button class="filter-btn" data-filter="easy">Easy</button>
+            <button class="filter-btn" data-filter="medium">Medium</button>
+            <button class="filter-btn" data-filter="advanced">Advanced</button>
+          </div>
+        </div>
+
+        <!-- Plant Grid -->
+        <div class="plant-grid">
+          <!-- Tomatoes Card -->
+          <article
+            class="plant-card"
+            data-type="vegetables"
+            data-difficulty="easy"
+          >
+            <div class="plant-card__image">
+              <img
+                src="./public/images/tomatoes.jpeg"
+                alt="Fresh ripe tomatoes growing on vine"
+                loading="lazy"
+              />
+              <span class="plant-card__badge"> Easy to Grow </span>
+              <div class="plant-card__overlay">
+                <h3 class="plant-card__title">Tomatoes</h3>
+                <p class="plant-card__latin">Solanum lycopersicum</p>
+              </div>
+            </div>
+            <div class="plant-card__content">
+              <div class="plant-card__meta">
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">💧</span>
+                  <span class="plant-card__meta-label">Water</span>
+                  <span class="plant-card__meta-value">Daily</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">☀️</span>
+                  <span class="plant-card__meta-label">Sun</span>
+                  <span class="plant-card__meta-value">Full</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">📏</span>
+                  <span class="plant-card__meta-label">Height</span>
+                  <span class="plant-card__meta-value">1-2m</span>
+                </div>
+              </div>
+              <p class="plant-card__description">
+                Perfect for spring planting. Requires support stakes and regular
+                pruning for best yield.
+              </p>
+            </div>
+          </article>
+
+          <!-- Marigolds Card -->
+          <article
+            class="plant-card"
+            data-type="flowers"
+            data-difficulty="easy"
+          >
+            <div class="plant-card__image">
+              <img
+                src="./public/images/marigolds.jpeg"
+                alt="Vibrant orange and yellow marigold flowers"
+                loading="lazy"
+              />
+              <span class="plant-card__badge"> Drought Tolerant </span>
+              <div class="plant-card__overlay">
+                <h3 class="plant-card__title">Marigolds</h3>
+                <p class="plant-card__latin">Tagetes erecta</p>
+              </div>
+            </div>
+            <div class="plant-card__content">
+              <div class="plant-card__meta">
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">💧</span>
+                  <span class="plant-card__meta-label">Water</span>
+                  <span class="plant-card__meta-value">Moderate</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">☀️</span>
+                  <span class="plant-card__meta-label">Sun</span>
+                  <span class="plant-card__meta-value">Full</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">📏</span>
+                  <span class="plant-card__meta-label">Height</span>
+                  <span class="plant-card__meta-value">30-60cm</span>
+                </div>
+              </div>
+              <p class="plant-card__description">
+                Vibrant flowers that bloom throughout autumn. Natural pest
+                repellent for vegetable gardens.
+              </p>
+            </div>
+          </article>
+
+          <!-- Spinach Card -->
+          <article
+            class="plant-card"
+            data-type="vegetables"
+            data-difficulty="easy"
+          >
+            <div class="plant-card__image">
+              <img
+                src="./public/images/spinach.jpeg"
+                alt="Fresh green spinach leaves"
+                loading="lazy"
+              />
+              <span class="plant-card__badge"> Winter Hardy </span>
+              <div class="plant-card__overlay">
+                <h3 class="plant-card__title">Spinach</h3>
+                <p class="plant-card__latin">Spinacia oleracea</p>
+              </div>
+            </div>
+            <div class="plant-card__content">
+              <div class="plant-card__meta">
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">💧</span>
+                  <span class="plant-card__meta-label">Water</span>
+                  <span class="plant-card__meta-value">Regular</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">☀️</span>
+                  <span class="plant-card__meta-label">Sun</span>
+                  <span class="plant-card__meta-value">Partial</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">📏</span>
+                  <span class="plant-card__meta-label">Height</span>
+                  <span class="plant-card__meta-value">15-30cm</span>
+                </div>
+              </div>
+              <p class="plant-card__description">
+                Cool-season crop ideal for winter cultivation. Rich in nutrients
+                and quick to harvest.
+              </p>
+            </div>
+          </article>
+
+          <!-- Okra Card -->
+          <article
+            class="plant-card"
+            data-type="vegetables"
+            data-difficulty="medium"
+          >
+            <div class="plant-card__image">
+              <img
+                src="./public/images/okras.jpeg"
+                alt="Green okra pods growing on plant"
+                loading="lazy"
+              />
+              <span class="plant-card__badge"> Heat Loving </span>
+              <div class="plant-card__overlay">
+                <h3 class="plant-card__title">Okra</h3>
+                <p class="plant-card__latin">Abelmoschus esculentus</p>
+              </div>
+            </div>
+            <div class="plant-card__content">
+              <div class="plant-card__meta">
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">💧</span>
+                  <span class="plant-card__meta-label">Water</span>
+                  <span class="plant-card__meta-value">Deep</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">☀️</span>
+                  <span class="plant-card__meta-label">Sun</span>
+                  <span class="plant-card__meta-value">Full</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">📏</span>
+                  <span class="plant-card__meta-label">Height</span>
+                  <span class="plant-card__meta-value">1-1.5m</span>
+                </div>
+              </div>
+              <p class="plant-card__description">
+                Summer staple that thrives in hot weather. Harvest pods
+                regularly for continuous production.
+              </p>
+            </div>
+          </article>
+
+          <!-- Roses Card -->
+          <article
+            class="plant-card"
+            data-type="flowers"
+            data-difficulty="medium"
+          >
+            <div class="plant-card__image">
+              <img
+                src="./public/images/roses.jpeg"
+                alt="Beautiful blooming roses in garden"
+                loading="lazy"
+              />
+              <span class="plant-card__badge"> Fragrant </span>
+              <div class="plant-card__overlay">
+                <h3 class="plant-card__title">Roses</h3>
+                <p class="plant-card__latin">Rosa damascena</p>
+              </div>
+            </div>
+            <div class="plant-card__content">
+              <div class="plant-card__meta">
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">💧</span>
+                  <span class="plant-card__meta-label">Water</span>
+                  <span class="plant-card__meta-value">Deep</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">☀️</span>
+                  <span class="plant-card__meta-label">Sun</span>
+                  <span class="plant-card__meta-value">6+ hrs</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">📏</span>
+                  <span class="plant-card__meta-label">Height</span>
+                  <span class="plant-card__meta-value">1-2m</span>
+                </div>
+              </div>
+              <p class="plant-card__description">
+                Classic garden flower blooming in spring. Requires pruning and
+                regular feeding for best blooms.
+              </p>
+            </div>
+          </article>
+
+          <!-- Mint Card -->
+          <article class="plant-card" data-type="herbs" data-difficulty="easy">
+            <div class="plant-card__image">
+              <img
+                src="./public/images/mint.jpeg"
+                alt="Fresh mint leaves in garden"
+                loading="lazy"
+              />
+              <span class="plant-card__badge"> Fast Growing </span>
+              <div class="plant-card__overlay">
+                <h3 class="plant-card__title">Mint</h3>
+                <p class="plant-card__latin">Mentha spicata</p>
+              </div>
+            </div>
+            <div class="plant-card__content">
+              <div class="plant-card__meta">
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">💧</span>
+                  <span class="plant-card__meta-label">Water</span>
+                  <span class="plant-card__meta-value">Moist</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">☀️</span>
+                  <span class="plant-card__meta-label">Sun</span>
+                  <span class="plant-card__meta-value">Partial</span>
+                </div>
+                <div class="plant-card__meta-item">
+                  <span class="plant-card__meta-icon">📏</span>
+                  <span class="plant-card__meta-label">Height</span>
+                  <span class="plant-card__meta-value">30-45cm</span>
+                </div>
+              </div>
+              <p class="plant-card__description">
+                Aromatic herb perfect for containers. Grows vigorously - best
+                planted in confined spaces.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <script src="script.js"></script>
   </body>
 </html>
