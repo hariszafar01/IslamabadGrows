@@ -316,3 +316,112 @@ document.head.appendChild(style);
     });
   });
 })();
+
+/* ============================================
+       NEWSLETTER FORM VALIDATION & SUBMISSION
+       ============================================ */
+(function () {
+  const form = document.getElementById('newsletter-form');
+  const emailInput = document.getElementById('newsletter-email');
+  const consentCheckbox = document.getElementById('consent');
+  const errorSpan = document.getElementById('email-error');
+  const successDiv = document.getElementById('newsletter-success');
+  const newsletterContent = document.querySelector('.newsletter__content');
+
+  if (!form) return;
+
+  // Email validation function
+  function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
+  // Show error message
+  function showError(message) {
+    errorSpan.textContent = message;
+    emailInput.setAttribute('aria-invalid', 'true');
+    emailInput.style.borderColor = 'var(--color-secondary)';
+  }
+
+  // Clear error message
+  function clearError() {
+    errorSpan.textContent = '';
+    emailInput.removeAttribute('aria-invalid');
+    emailInput.style.borderColor = '';
+  }
+
+  // Real-time email validation
+  emailInput.addEventListener('input', function () {
+    clearError();
+  });
+
+  emailInput.addEventListener('blur', function () {
+    const email = this.value.trim();
+    if (email && !validateEmail(email)) {
+      showError('Please enter a valid email address');
+    }
+  });
+
+  // Form submission
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const consent = consentCheckbox.checked;
+
+    // Validation
+    if (!email) {
+      showError('Email address is required');
+      emailInput.focus();
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      showError('Please enter a valid email address');
+      emailInput.focus();
+      return;
+    }
+
+    if (!consent) {
+      alert('Please agree to receive updates to continue');
+      consentCheckbox.focus();
+      return;
+    }
+
+    // Clear any errors
+    clearError();
+
+    // Simulate API call
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.querySelector('.btn__text').textContent;
+
+    // Show loading state
+    submitButton.disabled = true;
+    submitButton.querySelector('.btn__text').textContent = 'Subscribing...';
+    submitButton.querySelector('.btn__icon').textContent = '⏳';
+
+    // Simulate network delay
+    setTimeout(function () {
+      // Hide form and show success message
+      newsletterContent.style.display = 'none';
+      successDiv.hidden = false;
+
+      // Reset form
+      form.reset();
+
+      // Reset button state
+      submitButton.disabled = false;
+      submitButton.querySelector('.btn__text').textContent = originalText;
+      submitButton.querySelector('.btn__icon').textContent = '→';
+
+      // In a real application, you would send data to your backend here
+      console.log('Newsletter subscription:', { email, consent });
+
+      // Optional: Hide success message after 5 seconds
+      setTimeout(function () {
+        successDiv.hidden = true;
+        newsletterContent.style.display = 'grid';
+      }, 5000);
+    }, 1500);
+  });
+})();
