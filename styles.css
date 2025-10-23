@@ -148,6 +148,29 @@ button:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+/* Base Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.logo__image {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  animation: gentle-sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.logo__text {
+  display: inline-block;
+}
+
 /* ============================================
    3. LAYOUT & UTILITIES
    ============================================ */
@@ -382,25 +405,15 @@ p {
   padding-block: var(--space-2xs);
 }
 
-.header__logo {
-  font-size: var(--fs-lg);
-  font-weight: 800;
-  color: var(--clr-primary-700);
-  letter-spacing: -0.02em;
+/* Header-specific logo styles */
+.logo--header {
+  color: var(--color-primary);
   transition: var(--transition-base);
 }
 
-.header__logo:hover {
-  color: var(--clr-primary-500);
+.logo--header:hover {
+  color: var(--color-primary-light);
   transform: translateY(-1px);
-}
-
-.header__logo::before {
-  content: '🌿';
-  font-size: 1.5em;
-  display: inline-block;
-  animation: gentle-sway 4s ease-in-out infinite;
-  margin-right: var(--space-3xs);
 }
 
 /* Navigation */
@@ -2061,20 +2074,9 @@ p {
   gap: var(--space-xs);
 }
 
-.footer__logo {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3xs);
-  font-size: var(--fs-lg);
-  font-weight: 800;
+.logo--footer {
   color: var(--clr-white);
   margin-bottom: var(--space-3xs);
-}
-
-.footer__logo-icon {
-  font-size: 2rem;
-  animation: gentle-sway 4s ease-in-out infinite;
-  transform-origin: bottom center;
 }
 
 .footer__tagline {
@@ -2400,6 +2402,15 @@ p {
     display: flex;
   }
 
+  .logo__image {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .logo {
+    font-size: var(--font-size-base);
+  }
+
   .nav__list {
     position: fixed;
     top: var(--header-height);
@@ -2656,7 +2667,7 @@ p {
     text-align: center;
   }
 
-  .footer__logo {
+  .logo--footer {
     justify-content: center;
   }
 
